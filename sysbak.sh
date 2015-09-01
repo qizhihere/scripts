@@ -178,7 +178,7 @@ for i in "${SNAPSHOT_SUBVOLS[@]}"; do
     }
 
     # clean old archives
-    find "$BACKUP_DIR/" -name "*.tgz" -o -name "*.tbl" -type f -mtime +30 -exec rm -f \{\} \;
+    find "$BACKUP_DIR/" \( -name "*.tgz" -o -name "*.tbl" \) -type f -mtime +30 -exec rm -f \{\} \;
 
     # run backup action
     ! compress-snp "$BTRFS_DIR/$latest_snp" "$archive_path" --exclude-from="$EXCLUDE_FILE" && {
